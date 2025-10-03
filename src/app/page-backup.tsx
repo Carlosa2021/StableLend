@@ -20,14 +20,14 @@ export default function HomePage() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    setMobileMenuOpen(false);
+    setMobileMenuOpen(false); // Cerrar menú móvil después de navegar
   };
 
   // Función para cambiar tab y hacer scroll
   const handleTabChange = (tab: "deposit" | "borrow" | "swap") => {
     setActiveTab(tab);
     scrollToSection('interface');
-    setMobileMenuOpen(false);
+    setMobileMenuOpen(false); // Cerrar menú móvil
   };
 
   return (
@@ -70,53 +70,8 @@ export default function HomePage() {
               </button>
             </nav>
 
-            <div className="flex items-center space-x-4">
-              <CustomConnectButton />
-              
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-md text-gray-400 hover:text-gray-500"
-              >
-                <span className="sr-only">Abrir menú</span>
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
+            <CustomConnectButton />
           </div>
-          
-          {/* Mobile menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-200">
-              <div className="flex flex-col space-y-2">
-                <button 
-                  onClick={() => handleTabChange('deposit')}
-                  className="text-left text-gray-700 hover:text-gray-900 font-medium py-2"
-                >
-                  💰 Vaults
-                </button>
-                <button 
-                  onClick={() => handleTabChange('borrow')}
-                  className="text-left text-gray-700 hover:text-gray-900 font-medium py-2"
-                >
-                  💸 Préstamos
-                </button>
-                <button 
-                  onClick={() => handleTabChange('swap')}
-                  className="text-left text-gray-700 hover:text-gray-900 font-medium py-2"
-                >
-                  🔄 Swap
-                </button>
-                <button 
-                  onClick={() => scrollToSection('transparency')}
-                  className="text-left text-gray-700 hover:text-gray-900 font-medium py-2"
-                >
-                  📊 Transparencia
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       </header>
 
@@ -267,51 +222,93 @@ export default function HomePage() {
               {/* Tab Navigation */}
               <div className="flex justify-center mb-8">
                 <div className="bg-gray-100 p-1 rounded-lg">
-                  <button
-                    onClick={() => setActiveTab("deposit")}
-                    className={`px-6 py-2 rounded-md font-medium transition-colors ${
-                      activeTab === "deposit"
-                        ? "bg-white text-blue-600 shadow-sm"
-                        : "text-gray-600 hover:text-gray-900"
-                    }`}
-                  >
-                    💰 Depositar
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("borrow")}
-                    className={`px-6 py-2 rounded-md font-medium transition-colors ${
-                      activeTab === "borrow"
-                        ? "bg-white text-blue-600 shadow-sm"
-                        : "text-gray-600 hover:text-gray-900"
-                    }`}
-                  >
-                    💸 Pedir Prestado
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("swap")}
-                    className={`px-6 py-2 rounded-md font-medium transition-colors ${
-                      activeTab === "swap"
-                        ? "bg-white text-blue-600 shadow-sm"
-                        : "text-gray-600 hover:text-gray-900"
-                    }`}
-                  >
-                    🔄 Intercambiar
-                  </button>
-                </div>
-              </div>
+              <button
+                onClick={() => setActiveTab("deposit")}
+                className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                  activeTab === "deposit"
+                    ? "bg-white text-blue-600 shadow-sm"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                💰 Depositar
+              </button>
+              <button
+                onClick={() => setActiveTab("borrow")}
+                className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                  activeTab === "borrow"
+                    ? "bg-white text-blue-600 shadow-sm"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                💸 Pedir Prestado
+              </button>
+              <button
+                onClick={() => setActiveTab("swap")}
+                className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                  activeTab === "swap"
+                    ? "bg-white text-blue-600 shadow-sm"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                🔄 Intercambiar
+              </button>
+            </div>
+          </div>
 
-              {/* Interface Content */}
-              <div className="max-w-md mx-auto">
-                {activeTab === "deposit" && <DepositInterface />}
-                {activeTab === "borrow" && <BorrowInterface />}
-                {activeTab === "swap" && <SwapInterface />}
+          {/* Tab Content */}
+          <div className="max-w-md mx-auto">
+            {activeTab === "deposit" && <DepositInterface />}
+            {activeTab === "borrow" && <BorrowInterface />}
+            {activeTab === "swap" && <SwapInterface />}
+          </div>
+          
+            </div> {/* Cierre del grid */}
+          
+        </div> {/* Cierre del contenedor principal */}
+      </section>
+
+      {/* Features */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            Por qué elegir StableLend
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="card-hover text-center">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
               </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Seguridad Máxima</h3>
+              <p className="text-gray-600">Contratos auditados, multi-sig y seguros integrados</p>
+            </div>
+            
+            <div className="card-hover text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Transparencia Total</h3>
+              <p className="text-gray-600">Todas las reservas y transacciones son públicas</p>
+            </div>
+            
+            <div className="card-hover text-center">
+              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Simplicidad</h3>
+              <p className="text-gray-600">Interfaz intuitiva, sin complejidades innecesarias</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Transparency */}
+      {/* Transparency Section */}
       <section id="transparency" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
@@ -406,6 +403,24 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
+              <span className="text-xl font-semibold">StableLend Protocol</span>
+            </div>
+            
+            <div className="text-gray-400 text-sm">
+              © 2025 StableLend Protocol. DeFi seguro y transparente.
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
@@ -482,28 +497,29 @@ function DepositInterface() {
           />
         </div>
         
-        <div className="bg-gray-50 p-3 rounded-lg">
-          <div className="text-sm text-gray-700">
-            <div className="flex justify-between">
-              <span>APY:</span>
-              <span className="text-green-600 font-medium">
-                {selectedToken === "USDC" ? "5.2%" : "4.8%"}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span>Recibirás:</span>
-              <span>{amount || "0.00"} sl{selectedToken}</span>
-            </div>
-          </div>
-        </div>
-        
         <button 
           onClick={handleDeposit}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-          disabled={isLoading || !isConnected || !amount}
+          disabled={isLoading || !isConnected}
+          className={`btn-primary w-full ${
+            isLoading || !isConnected 
+              ? "opacity-50 cursor-not-allowed" 
+              : ""
+          }`}
         >
-          {isLoading ? "Procesando..." : isConnected ? "Depositar y Ganar" : "Conectar Wallet"}
+          {isLoading 
+            ? "Procesando..." 
+            : isConnected 
+            ? `Depositar ${selectedToken}` 
+            : "Conecta Wallet"
+          }
         </button>
+        
+        <div className="text-center text-sm text-gray-600">
+          {isConnected 
+            ? "Recibirás tokens sl" + selectedToken + " • Retiros disponibles en cualquier momento"
+            : "Conecta tu wallet para comenzar"
+          }
+        </div>
       </div>
     </div>
   );
@@ -596,6 +612,32 @@ function BorrowInterface() {
         <div className="text-xs text-gray-500 text-center">
           Liquidación automática si el colateral baja del 120%
         </div>
+      </div>
+    </div>
+  );
+}
+            onChange={(e) => setBorrowAmount(e.target.value)}
+            placeholder="0.00"
+            className="input"
+          />
+        </div>
+        
+        <div className="bg-blue-50 p-3 rounded-lg">
+          <div className="text-sm text-blue-700">
+            <div className="flex justify-between">
+              <span>LTV Máximo:</span>
+              <span>70%</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Tasa de Interés:</span>
+              <span>6.5% APR</span>
+            </div>
+          </div>
+        </div>
+        
+        <button className="btn-primary w-full">
+          Pedir Prestado
+        </button>
       </div>
     </div>
   );

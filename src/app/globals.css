@@ -1,1 +1,93 @@
 @import "tailwindcss";
+
+/* Variables CSS personalizadas */
+:root {
+  --background: 249 250 251; /* gray-50 */
+  --foreground: 17 24 39; /* gray-900 */
+  --border: 229 231 235; /* gray-200 */
+}
+
+/* Estilos base */
+* {
+  border-color: rgb(var(--border));
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Componentes personalizados */
+.btn-primary {
+  background-color: rgb(37 99 235); /* blue-600 */
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: rgb(29 78 216); /* blue-700 */
+}
+
+.btn-secondary {
+  background-color: rgb(243 244 246); /* gray-100 */
+  color: rgb(17 24 39); /* gray-900 */
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: rgb(229 231 235); /* gray-200 */
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(243 244 246); /* gray-100 */
+  padding: 1.5rem;
+}
+
+.card-hover {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(243 244 246);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.card-hover:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgb(209 213 219); /* gray-300 */
+  border-radius: 0.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgb(59 130 246); /* blue-500 */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.metric-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: rgb(17 24 39); /* gray-900 */
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: rgb(75 85 99); /* gray-600 */
+  margin-top: 0.25rem;
+}
