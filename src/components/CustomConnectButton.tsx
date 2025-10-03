@@ -4,17 +4,29 @@ import { ConnectButton } from "thirdweb/react";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { client, activeChain } from "@/lib/thirdweb";
 
-// Configurar wallets disponibles incluyendo smart wallets
+// Configurar wallets disponibles incluyendo smart wallets y autenticación completa
 const wallets = [
   inAppWallet({
     auth: {
-      options: ["email", "google", "discord", "farcaster"],
+      options: [
+        "email",
+        "phone", // ✅ Agregado para autenticación por teléfono
+        "passkey", // ✅ Agregado para autenticación por passkey
+        "google", 
+        "discord", 
+        "farcaster",
+        "telegram",
+        "apple",
+        "facebook",
+        "x" // Twitter/X
+      ],
     },
   }),
   createWallet("io.metamask"),
   createWallet("com.coinbase.wallet"),
   createWallet("me.rainbow"),
   createWallet("com.trustwallet.app"),
+  createWallet("walletConnect"),
 ];
 
 export function CustomConnectButton() {
@@ -24,6 +36,11 @@ export function CustomConnectButton() {
       wallets={wallets}
       theme="light"
       chain={activeChain}
+      // Habilitar Account Abstraction para transacciones gasless
+      accountAbstraction={{
+        chain: activeChain,
+        sponsorGas: true,
+      }}
       connectModal={{
         size: "wide",
         title: "Conectar a StableLend 🚀",
@@ -62,6 +79,11 @@ export function CustomConnectButton() {
           },
         ],
       }}
+      // Configuración de WalletConnect
+      walletConnect={{
+        projectId: "your_walletconnect_project_id", // Se puede configurar opcionalmente
+      }}
+      // Configuración de botones y UI
       connectButton={{
         label: "Conectar Wallet 💎",
         style: {
@@ -106,7 +128,21 @@ export function CustomConnectButton() {
           transition: "all 0.2s ease",
         },
       }}
+      // Configuración avanzada del modal de detalles
+      detailsModal={{
+        assetTabs: ["token", "nft"], // Orden de las pestañas: tokens primero, luego NFTs
+      }}
+      // Mostrar todas las wallets disponibles
       showAllWallets={true}
+      // Auto-conectar en siguientes visitas
+      autoConnect={{ timeout: 15000 }}
+      // Callbacks para eventos de conexión
+      onConnect={(wallet) => {
+        console.log("Wallet conectada:", wallet);
+      }}
+      onDisconnect={(info) => {
+        console.log("Wallet desconectada:", info);
+      }}
     />
   );
 }
