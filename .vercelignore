@@ -11,3 +11,6 @@ page-backup.tsx
 # Ignore temporary files
 *.tmp
 *.temp
+*-new.*
+*-old.*
+*-backup.*
