@@ -4,6 +4,8 @@
 
 StableLend es un protocolo DeFi innovador que combina seguridad, transparencia y utilidad real. Construido con thirdweb SDK v5 y Next.js 15, ofrece una experiencia de usuario completa con servicios de wallet integrados.
 
+> ✅ **Production Ready** - Optimizado para deployment en Vercel
+
 ![StableLend Banner](https://img.shields.io/badge/StableLend-DeFi_Protocol-blue?style=for-the-badge&logo=ethereum)
 
 ## ✨ Características Principales
