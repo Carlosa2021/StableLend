@@ -6,6 +6,7 @@ import { useVaultOperations } from "@/hooks/useVaultOperations";
 import { useWallet } from "@/hooks/useWallet";
 import { useMultipleTokenBalances } from "@/hooks/useTokenBalance";
 import { WalletInfo } from "@/components/WalletInfo";
+import { Footer } from "@/components/Footer";
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"deposit" | "borrow" | "swap">("deposit");
@@ -403,6 +404,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
