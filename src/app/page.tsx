@@ -10,9 +10,6 @@ import { WalletInfo } from "@/components/WalletInfo";
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"deposit" | "borrow" | "swap">("deposit");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  // Real Polygon Token Balances 🚀
-  const { allBalances, isLoading: balancesLoading } = useMultipleTokenBalances();
 
   // Función para scroll suave a secciones
   const scrollToSection = (sectionId: string) => {

@@ -71,11 +71,8 @@ export function useVaultOperations() {
         ? CONTRACT_ADDRESSES.SLUSDC_VAULT 
         : CONTRACT_ADDRESSES.SLUSDT_VAULT;
 
-      const vaultContract = getContract({
-        client,
-        address: vaultAddress,
-        chain: activeChain,
-      });
+      // TODO: Implement vault balance reading when contracts are deployed
+      console.log("Vault address:", vaultAddress);
 
       // Aquí podrías implementar la lectura del balance
       // Por ahora retornamos 0
